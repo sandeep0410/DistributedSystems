@@ -12,7 +12,8 @@ namespace java com.umn.disys.thrift
     3:string response,
     4:NodeDetails nodeDetails
     5:i32 sender,
-    6:i32 receiver
+    6:i32 receiver,
+    7:string fileName
     }
 
     service ServerService {
