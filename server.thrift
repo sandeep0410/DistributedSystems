@@ -19,7 +19,7 @@ namespace java server
     }
     
     service SuperNodeServerService {
-    list<Job> join(1: NodeDetails node),
+    list<NodeDetails> join(1: NodeDetails node),
     void postJoin(1: NodeDetails node, 2: bool success)
     void log(1:string logline),
     Job read(1:Job readJob),

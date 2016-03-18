@@ -39,7 +39,7 @@ public class SuperNodeServerService {
 
   public interface Iface {
 
-    public List<Job> join(NodeDetails node) throws org.apache.thrift.TException;
+    public List<NodeDetails> join(NodeDetails node) throws org.apache.thrift.TException;
 
     public void postJoin(NodeDetails node, boolean success) throws org.apache.thrift.TException;
 
@@ -85,7 +85,7 @@ public class SuperNodeServerService {
       super(iprot, oprot);
     }
 
-    public List<Job> join(NodeDetails node) throws org.apache.thrift.TException
+    public List<NodeDetails> join(NodeDetails node) throws org.apache.thrift.TException
     {
       send_join(node);
       return recv_join();
@@ -98,7 +98,7 @@ public class SuperNodeServerService {
       sendBase("join", args);
     }
 
-    public List<Job> recv_join() throws org.apache.thrift.TException
+    public List<NodeDetails> recv_join() throws org.apache.thrift.TException
     {
       join_result result = new join_result();
       receiveBase(result, "join");
@@ -235,7 +235,7 @@ public class SuperNodeServerService {
         prot.writeMessageEnd();
       }
 
-      public List<Job> getResult() throws org.apache.thrift.TException {
+      public List<NodeDetails> getResult() throws org.apache.thrift.TException {
         if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
           throw new IllegalStateException("Method call not finished!");
         }
@@ -518,7 +518,7 @@ public class SuperNodeServerService {
       return processMap;
     }
 
-    public static class join<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, join_args, List<Job>> {
+    public static class join<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, join_args, List<NodeDetails>> {
       public join() {
         super("join");
       }
@@ -527,10 +527,10 @@ public class SuperNodeServerService {
         return new join_args();
       }
 
-      public AsyncMethodCallback<List<Job>> getResultHandler(final AsyncFrameBuffer fb, final int seqid) {
+      public AsyncMethodCallback<List<NodeDetails>> getResultHandler(final AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new AsyncMethodCallback<List<Job>>() { 
-          public void onComplete(List<Job> o) {
+        return new AsyncMethodCallback<List<NodeDetails>>() { 
+          public void onComplete(List<NodeDetails> o) {
             join_result result = new join_result();
             result.success = o;
             try {
@@ -564,7 +564,7 @@ public class SuperNodeServerService {
         return false;
       }
 
-      public void start(I iface, join_args args, org.apache.thrift.async.AsyncMethodCallback<List<Job>> resultHandler) throws TException {
+      public void start(I iface, join_args args, org.apache.thrift.async.AsyncMethodCallback<List<NodeDetails>> resultHandler) throws TException {
         iface.join(args.node,resultHandler);
       }
     }
@@ -1150,7 +1150,7 @@ public class SuperNodeServerService {
       schemes.put(TupleScheme.class, new join_resultTupleSchemeFactory());
     }
 
-    public List<Job> success; // required
+    public List<NodeDetails> success; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -1216,7 +1216,7 @@ public class SuperNodeServerService {
       Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.ListMetaData(org.apache.thrift.protocol.TType.LIST, 
-              new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, Job.class))));
+              new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, NodeDetails.class))));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(join_result.class, metaDataMap);
     }
@@ -1225,7 +1225,7 @@ public class SuperNodeServerService {
     }
 
     public join_result(
-      List<Job> success)
+      List<NodeDetails> success)
     {
       this();
       this.success = success;
@@ -1236,9 +1236,9 @@ public class SuperNodeServerService {
      */
     public join_result(join_result other) {
       if (other.isSetSuccess()) {
-        List<Job> __this__success = new ArrayList<Job>(other.success.size());
-        for (Job other_element : other.success) {
-          __this__success.add(new Job(other_element));
+        List<NodeDetails> __this__success = new ArrayList<NodeDetails>(other.success.size());
+        for (NodeDetails other_element : other.success) {
+          __this__success.add(new NodeDetails(other_element));
         }
         this.success = __this__success;
       }
@@ -1257,22 +1257,22 @@ public class SuperNodeServerService {
       return (this.success == null) ? 0 : this.success.size();
     }
 
-    public java.util.Iterator<Job> getSuccessIterator() {
+    public java.util.Iterator<NodeDetails> getSuccessIterator() {
       return (this.success == null) ? null : this.success.iterator();
     }
 
-    public void addToSuccess(Job elem) {
+    public void addToSuccess(NodeDetails elem) {
       if (this.success == null) {
-        this.success = new ArrayList<Job>();
+        this.success = new ArrayList<NodeDetails>();
       }
       this.success.add(elem);
     }
 
-    public List<Job> getSuccess() {
+    public List<NodeDetails> getSuccess() {
       return this.success;
     }
 
-    public join_result setSuccess(List<Job> success) {
+    public join_result setSuccess(List<NodeDetails> success) {
       this.success = success;
       return this;
     }
@@ -1298,7 +1298,7 @@ public class SuperNodeServerService {
         if (value == null) {
           unsetSuccess();
         } else {
-          setSuccess((List<Job>)value);
+          setSuccess((List<NodeDetails>)value);
         }
         break;
 
@@ -1456,11 +1456,11 @@ public class SuperNodeServerService {
               if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
                 {
                   org.apache.thrift.protocol.TList _list0 = iprot.readListBegin();
-                  struct.success = new ArrayList<Job>(_list0.size);
-                  Job _elem1;
+                  struct.success = new ArrayList<NodeDetails>(_list0.size);
+                  NodeDetails _elem1;
                   for (int _i2 = 0; _i2 < _list0.size; ++_i2)
                   {
-                    _elem1 = new Job();
+                    _elem1 = new NodeDetails();
                     _elem1.read(iprot);
                     struct.success.add(_elem1);
                   }
@@ -1490,7 +1490,7 @@ public class SuperNodeServerService {
           oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
           {
             oprot.writeListBegin(new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, struct.success.size()));
-            for (Job _iter3 : struct.success)
+            for (NodeDetails _iter3 : struct.success)
             {
               _iter3.write(oprot);
             }
@@ -1523,7 +1523,7 @@ public class SuperNodeServerService {
         if (struct.isSetSuccess()) {
           {
             oprot.writeI32(struct.success.size());
-            for (Job _iter4 : struct.success)
+            for (NodeDetails _iter4 : struct.success)
             {
               _iter4.write(oprot);
             }
@@ -1538,11 +1538,11 @@ public class SuperNodeServerService {
         if (incoming.get(0)) {
           {
             org.apache.thrift.protocol.TList _list5 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
-            struct.success = new ArrayList<Job>(_list5.size);
-            Job _elem6;
+            struct.success = new ArrayList<NodeDetails>(_list5.size);
+            NodeDetails _elem6;
             for (int _i7 = 0; _i7 < _list5.size; ++_i7)
             {
-              _elem6 = new Job();
+              _elem6 = new NodeDetails();
               _elem6.read(iprot);
               struct.success.add(_elem6);
             }
