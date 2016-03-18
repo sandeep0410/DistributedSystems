@@ -18,7 +18,8 @@ namespace java com.umn.disys.thrift
     service ServerService {
     Job nodeRead(1:Job readJob),
     Job nodeWrite(1:Job writeJob),
-    bool updateDHT(1: list<NodeDetails> nodes) 
+    bool updatePeers(1: list<NodeDetails> nodes),
+    i32 getVersionNumber(1:string fileName) 
     }
     
     service SuperNodeServerService {
