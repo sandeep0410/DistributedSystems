@@ -1,4 +1,4 @@
-namespace java server
+namespace java com.umn.disys.thrift
 
     struct NodeDetails {
     1:string id,
@@ -11,6 +11,8 @@ namespace java server
     2:i32 subRequestType,
     3:string response,
     4:NodeDetails nodeDetails
+    5:i32 sender,
+    6:i32 receiver
     }
 
     service ServerService {
