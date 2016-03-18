@@ -5,15 +5,23 @@ namespace java server
     2:i32 port,
     3:string ip
     }
+    
+    struct Job{
+    1:i32 requestType,
+    2:i32 subRequestType,
+    3:string response,
+    4:NodeDetails nodeDetails
+    }
 
-    service SuperServerService {
-    list<NodeDetails> join(1: NodeDetails node),
-    void postJoin(1: NodeDetails node, 2: bool success),
-    NodeDetails getNode(),    
+    service ServerService {
+    Job nodeRead(1:Job readJob),
+    Job nodeWrite(1:Job writeJob)   
     }
     
-    service NodeServerService{
-    void write(1: string filename, 2: string contents),
-    string read(1: string filename),
-    bool updateDHT(1: list<NodeDetails> nodes)
+    service SuperNodeServerService {
+    void join(1: NodeDetails node),
+    void postJoin(1: NodeDetails node, 2: bool success)
+    void log(1:string logline),
+    Job read(1:Job readJob),
+    Job write(1:Job writeJob),
     }
