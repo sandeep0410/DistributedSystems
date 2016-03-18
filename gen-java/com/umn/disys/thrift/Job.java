@@ -44,6 +44,7 @@ public class Job implements org.apache.thrift.TBase<Job, Job._Fields>, java.io.S
   private static final org.apache.thrift.protocol.TField NODE_DETAILS_FIELD_DESC = new org.apache.thrift.protocol.TField("nodeDetails", org.apache.thrift.protocol.TType.STRUCT, (short)4);
   private static final org.apache.thrift.protocol.TField SENDER_FIELD_DESC = new org.apache.thrift.protocol.TField("sender", org.apache.thrift.protocol.TType.I32, (short)5);
   private static final org.apache.thrift.protocol.TField RECEIVER_FIELD_DESC = new org.apache.thrift.protocol.TField("receiver", org.apache.thrift.protocol.TType.I32, (short)6);
+  private static final org.apache.thrift.protocol.TField FILE_NAME_FIELD_DESC = new org.apache.thrift.protocol.TField("fileName", org.apache.thrift.protocol.TType.STRING, (short)7);
 
   private static final Map<Class<? extends IScheme>, SchemeFactory> schemes = new HashMap<Class<? extends IScheme>, SchemeFactory>();
   static {
@@ -57,6 +58,7 @@ public class Job implements org.apache.thrift.TBase<Job, Job._Fields>, java.io.S
   public NodeDetails nodeDetails; // required
   public int sender; // required
   public int receiver; // required
+  public String fileName; // required
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -65,7 +67,8 @@ public class Job implements org.apache.thrift.TBase<Job, Job._Fields>, java.io.S
     RESPONSE((short)3, "response"),
     NODE_DETAILS((short)4, "nodeDetails"),
     SENDER((short)5, "sender"),
-    RECEIVER((short)6, "receiver");
+    RECEIVER((short)6, "receiver"),
+    FILE_NAME((short)7, "fileName");
 
     private static final Map<String, _Fields> byName = new HashMap<String, _Fields>();
 
@@ -92,6 +95,8 @@ public class Job implements org.apache.thrift.TBase<Job, Job._Fields>, java.io.S
           return SENDER;
         case 6: // RECEIVER
           return RECEIVER;
+        case 7: // FILE_NAME
+          return FILE_NAME;
         default:
           return null;
       }
@@ -152,6 +157,8 @@ public class Job implements org.apache.thrift.TBase<Job, Job._Fields>, java.io.S
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
     tmpMap.put(_Fields.RECEIVER, new org.apache.thrift.meta_data.FieldMetaData("receiver", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
+    tmpMap.put(_Fields.FILE_NAME, new org.apache.thrift.meta_data.FieldMetaData("fileName", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     metaDataMap = Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(Job.class, metaDataMap);
   }
@@ -165,7 +172,8 @@ public class Job implements org.apache.thrift.TBase<Job, Job._Fields>, java.io.S
     String response,
     NodeDetails nodeDetails,
     int sender,
-    int receiver)
+    int receiver,
+    String fileName)
   {
     this();
     this.requestType = requestType;
@@ -178,6 +186,7 @@ public class Job implements org.apache.thrift.TBase<Job, Job._Fields>, java.io.S
     setSenderIsSet(true);
     this.receiver = receiver;
     setReceiverIsSet(true);
+    this.fileName = fileName;
   }
 
   /**
@@ -195,6 +204,9 @@ public class Job implements org.apache.thrift.TBase<Job, Job._Fields>, java.io.S
     }
     this.sender = other.sender;
     this.receiver = other.receiver;
+    if (other.isSetFileName()) {
+      this.fileName = other.fileName;
+    }
   }
 
   public Job deepCopy() {
@@ -213,6 +225,7 @@ public class Job implements org.apache.thrift.TBase<Job, Job._Fields>, java.io.S
     this.sender = 0;
     setReceiverIsSet(false);
     this.receiver = 0;
+    this.fileName = null;
   }
 
   public int getRequestType() {
@@ -355,6 +368,30 @@ public class Job implements org.apache.thrift.TBase<Job, Job._Fields>, java.io.S
     __isset_bitfield = EncodingUtils.setBit(__isset_bitfield, __RECEIVER_ISSET_ID, value);
   }
 
+  public String getFileName() {
+    return this.fileName;
+  }
+
+  public Job setFileName(String fileName) {
+    this.fileName = fileName;
+    return this;
+  }
+
+  public void unsetFileName() {
+    this.fileName = null;
+  }
+
+  /** Returns true if field fileName is set (has been assigned a value) and false otherwise */
+  public boolean isSetFileName() {
+    return this.fileName != null;
+  }
+
+  public void setFileNameIsSet(boolean value) {
+    if (!value) {
+      this.fileName = null;
+    }
+  }
+
   public void setFieldValue(_Fields field, Object value) {
     switch (field) {
     case REQUEST_TYPE:
@@ -405,6 +442,14 @@ public class Job implements org.apache.thrift.TBase<Job, Job._Fields>, java.io.S
       }
       break;
 
+    case FILE_NAME:
+      if (value == null) {
+        unsetFileName();
+      } else {
+        setFileName((String)value);
+      }
+      break;
+
     }
   }
 
@@ -427,6 +472,9 @@ public class Job implements org.apache.thrift.TBase<Job, Job._Fields>, java.io.S
 
     case RECEIVER:
       return getReceiver();
+
+    case FILE_NAME:
+      return getFileName();
 
     }
     throw new IllegalStateException();
@@ -451,6 +499,8 @@ public class Job implements org.apache.thrift.TBase<Job, Job._Fields>, java.io.S
       return isSetSender();
     case RECEIVER:
       return isSetReceiver();
+    case FILE_NAME:
+      return isSetFileName();
     }
     throw new IllegalStateException();
   }
@@ -522,6 +572,15 @@ public class Job implements org.apache.thrift.TBase<Job, Job._Fields>, java.io.S
         return false;
     }
 
+    boolean this_present_fileName = true && this.isSetFileName();
+    boolean that_present_fileName = true && that.isSetFileName();
+    if (this_present_fileName || that_present_fileName) {
+      if (!(this_present_fileName && that_present_fileName))
+        return false;
+      if (!this.fileName.equals(that.fileName))
+        return false;
+    }
+
     return true;
   }
 
@@ -558,6 +617,11 @@ public class Job implements org.apache.thrift.TBase<Job, Job._Fields>, java.io.S
     list.add(present_receiver);
     if (present_receiver)
       list.add(receiver);
+
+    boolean present_fileName = true && (isSetFileName());
+    list.add(present_fileName);
+    if (present_fileName)
+      list.add(fileName);
 
     return list.hashCode();
   }
@@ -630,6 +694,16 @@ public class Job implements org.apache.thrift.TBase<Job, Job._Fields>, java.io.S
         return lastComparison;
       }
     }
+    lastComparison = Boolean.valueOf(isSetFileName()).compareTo(other.isSetFileName());
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+    if (isSetFileName()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.fileName, other.fileName);
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+    }
     return 0;
   }
 
@@ -680,6 +754,14 @@ public class Job implements org.apache.thrift.TBase<Job, Job._Fields>, java.io.S
     if (!first) sb.append(", ");
     sb.append("receiver:");
     sb.append(this.receiver);
+    first = false;
+    if (!first) sb.append(", ");
+    sb.append("fileName:");
+    if (this.fileName == null) {
+      sb.append("null");
+    } else {
+      sb.append(this.fileName);
+    }
     first = false;
     sb.append(")");
     return sb.toString();
@@ -778,6 +860,14 @@ public class Job implements org.apache.thrift.TBase<Job, Job._Fields>, java.io.S
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
+          case 7: // FILE_NAME
+            if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+              struct.fileName = iprot.readString();
+              struct.setFileNameIsSet(true);
+            } else { 
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+            }
+            break;
           default:
             org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
         }
@@ -815,6 +905,11 @@ public class Job implements org.apache.thrift.TBase<Job, Job._Fields>, java.io.S
       oprot.writeFieldBegin(RECEIVER_FIELD_DESC);
       oprot.writeI32(struct.receiver);
       oprot.writeFieldEnd();
+      if (struct.fileName != null) {
+        oprot.writeFieldBegin(FILE_NAME_FIELD_DESC);
+        oprot.writeString(struct.fileName);
+        oprot.writeFieldEnd();
+      }
       oprot.writeFieldStop();
       oprot.writeStructEnd();
     }
@@ -851,7 +946,10 @@ public class Job implements org.apache.thrift.TBase<Job, Job._Fields>, java.io.S
       if (struct.isSetReceiver()) {
         optionals.set(5);
       }
-      oprot.writeBitSet(optionals, 6);
+      if (struct.isSetFileName()) {
+        optionals.set(6);
+      }
+      oprot.writeBitSet(optionals, 7);
       if (struct.isSetRequestType()) {
         oprot.writeI32(struct.requestType);
       }
@@ -870,12 +968,15 @@ public class Job implements org.apache.thrift.TBase<Job, Job._Fields>, java.io.S
       if (struct.isSetReceiver()) {
         oprot.writeI32(struct.receiver);
       }
+      if (struct.isSetFileName()) {
+        oprot.writeString(struct.fileName);
+      }
     }
 
     @Override
     public void read(org.apache.thrift.protocol.TProtocol prot, Job struct) throws org.apache.thrift.TException {
       TTupleProtocol iprot = (TTupleProtocol) prot;
-      BitSet incoming = iprot.readBitSet(6);
+      BitSet incoming = iprot.readBitSet(7);
       if (incoming.get(0)) {
         struct.requestType = iprot.readI32();
         struct.setRequestTypeIsSet(true);
@@ -900,6 +1001,10 @@ public class Job implements org.apache.thrift.TBase<Job, Job._Fields>, java.io.S
       if (incoming.get(5)) {
         struct.receiver = iprot.readI32();
         struct.setReceiverIsSet(true);
+      }
+      if (incoming.get(6)) {
+        struct.fileName = iprot.readString();
+        struct.setFileNameIsSet(true);
       }
     }
   }
