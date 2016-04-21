@@ -42,7 +42,7 @@ public class Task implements org.apache.thrift.TBase<Task, Task._Fields>, java.i
   private static final org.apache.thrift.protocol.TField JOB_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("jobId", org.apache.thrift.protocol.TType.I32, (short)2);
   private static final org.apache.thrift.protocol.TField TYPE_FIELD_DESC = new org.apache.thrift.protocol.TField("type", org.apache.thrift.protocol.TType.STRING, (short)3);
   private static final org.apache.thrift.protocol.TField SORT_OFFSET_FIELD_DESC = new org.apache.thrift.protocol.TField("sortOffset", org.apache.thrift.protocol.TType.I64, (short)4);
-  private static final org.apache.thrift.protocol.TField SORT_CHUNK_SIZE_FIELD_DESC = new org.apache.thrift.protocol.TField("sortChunkSize", org.apache.thrift.protocol.TType.I64, (short)5);
+  private static final org.apache.thrift.protocol.TField SORT_CHUNK_SIZE_FIELD_DESC = new org.apache.thrift.protocol.TField("sortChunkSize", org.apache.thrift.protocol.TType.I32, (short)5);
   private static final org.apache.thrift.protocol.TField SORTFILENAME_FIELD_DESC = new org.apache.thrift.protocol.TField("sortfilename", org.apache.thrift.protocol.TType.STRING, (short)6);
   private static final org.apache.thrift.protocol.TField MERGEFILENAMES_FIELD_DESC = new org.apache.thrift.protocol.TField("mergefilenames", org.apache.thrift.protocol.TType.LIST, (short)7);
 
@@ -56,7 +56,7 @@ public class Task implements org.apache.thrift.TBase<Task, Task._Fields>, java.i
   public int jobId; // required
   public String type; // required
   public long sortOffset; // required
-  public long sortChunkSize; // required
+  public int sortChunkSize; // required
   public String sortfilename; // required
   public List<String> mergefilenames; // required
 
@@ -154,7 +154,7 @@ public class Task implements org.apache.thrift.TBase<Task, Task._Fields>, java.i
     tmpMap.put(_Fields.SORT_OFFSET, new org.apache.thrift.meta_data.FieldMetaData("sortOffset", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I64)));
     tmpMap.put(_Fields.SORT_CHUNK_SIZE, new org.apache.thrift.meta_data.FieldMetaData("sortChunkSize", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I64)));
+        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
     tmpMap.put(_Fields.SORTFILENAME, new org.apache.thrift.meta_data.FieldMetaData("sortfilename", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     tmpMap.put(_Fields.MERGEFILENAMES, new org.apache.thrift.meta_data.FieldMetaData("mergefilenames", org.apache.thrift.TFieldRequirementType.DEFAULT, 
@@ -172,7 +172,7 @@ public class Task implements org.apache.thrift.TBase<Task, Task._Fields>, java.i
     int jobId,
     String type,
     long sortOffset,
-    long sortChunkSize,
+    int sortChunkSize,
     String sortfilename,
     List<String> mergefilenames)
   {
@@ -323,11 +323,11 @@ public class Task implements org.apache.thrift.TBase<Task, Task._Fields>, java.i
     __isset_bitfield = EncodingUtils.setBit(__isset_bitfield, __SORTOFFSET_ISSET_ID, value);
   }
 
-  public long getSortChunkSize() {
+  public int getSortChunkSize() {
     return this.sortChunkSize;
   }
 
-  public Task setSortChunkSize(long sortChunkSize) {
+  public Task setSortChunkSize(int sortChunkSize) {
     this.sortChunkSize = sortChunkSize;
     setSortChunkSizeIsSet(true);
     return this;
@@ -447,7 +447,7 @@ public class Task implements org.apache.thrift.TBase<Task, Task._Fields>, java.i
       if (value == null) {
         unsetSortChunkSize();
       } else {
-        setSortChunkSize((Long)value);
+        setSortChunkSize((Integer)value);
       }
       break;
 
@@ -858,8 +858,8 @@ public class Task implements org.apache.thrift.TBase<Task, Task._Fields>, java.i
             }
             break;
           case 5: // SORT_CHUNK_SIZE
-            if (schemeField.type == org.apache.thrift.protocol.TType.I64) {
-              struct.sortChunkSize = iprot.readI64();
+            if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
+              struct.sortChunkSize = iprot.readI32();
               struct.setSortChunkSizeIsSet(true);
             } else { 
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
@@ -921,7 +921,7 @@ public class Task implements org.apache.thrift.TBase<Task, Task._Fields>, java.i
       oprot.writeI64(struct.sortOffset);
       oprot.writeFieldEnd();
       oprot.writeFieldBegin(SORT_CHUNK_SIZE_FIELD_DESC);
-      oprot.writeI64(struct.sortChunkSize);
+      oprot.writeI32(struct.sortChunkSize);
       oprot.writeFieldEnd();
       if (struct.sortfilename != null) {
         oprot.writeFieldBegin(SORTFILENAME_FIELD_DESC);
@@ -993,7 +993,7 @@ public class Task implements org.apache.thrift.TBase<Task, Task._Fields>, java.i
         oprot.writeI64(struct.sortOffset);
       }
       if (struct.isSetSortChunkSize()) {
-        oprot.writeI64(struct.sortChunkSize);
+        oprot.writeI32(struct.sortChunkSize);
       }
       if (struct.isSetSortfilename()) {
         oprot.writeString(struct.sortfilename);
@@ -1030,7 +1030,7 @@ public class Task implements org.apache.thrift.TBase<Task, Task._Fields>, java.i
         struct.setSortOffsetIsSet(true);
       }
       if (incoming.get(4)) {
-        struct.sortChunkSize = iprot.readI64();
+        struct.sortChunkSize = iprot.readI32();
         struct.setSortChunkSizeIsSet(true);
       }
       if (incoming.get(5)) {
