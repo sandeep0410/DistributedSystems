@@ -18,8 +18,8 @@ namespace java edu.umn.cs.disys.mr.thrift
     1:i32 taskId,
     2:i32 jobId, 
     3:string type,
-    4:i32 sortOffset,
-    5:i32 sortChunkSize,
+    4:i64 sortOffset,
+    5:i64 sortChunkSize,
     6:string sortfilename,
     7:list<string> mergefilenames
     }
